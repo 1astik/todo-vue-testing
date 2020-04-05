@@ -47,7 +47,7 @@
             },
             goHome(){
                 this.closeModal();
-                this.$router.push( { path: '/' });
+                this.$router.push( { path: '/todo-testing' });
             }
         },
         beforeMount() {

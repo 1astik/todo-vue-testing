@@ -10,14 +10,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Заголовок</span>
                     </div>
-                    <input type="text" placeholder="Task name"
+                    <input type="text"
                            class="form-control"></div>
                 <div v-for="(item,index) in list" :id="index"
                      class="col-12 col-md-6 m-3 text-center input-group mx-auto">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">-</span>
                     </div>
-                    <input type="text" class="form-control  mr-2 task-item" placeholder="Task item">
+                    <input type="text" class="form-control  mr-2 task-item" >
                     <i class="fa fa-minus-circle fa-2x task-icon" :id="index" @click="deleteItem"></i>
                 </div>
                 <div class="col-12 col-md-6 text-center mx-auto  mb-3">
