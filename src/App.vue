@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="container">
+    <div id="app" class="container" >
         <router-view></router-view>
     </div>
 </template>
@@ -16,6 +16,9 @@
         components: {
             Task,
             Home,
+        },
+        methods:{
+
         },
         mounted() {
             if ( localStorage.getItem('tasks') === null ) {

@@ -1,23 +1,23 @@
 <template>
     <nav class="d-flex flex-column bg-dark justify-content-center align-items-center text-white myNav">
         <div class="p-2">
-            <a @click="create = !create" class="create-task d-flex align-items-center"><i
+            <a @click="openNav" class="create-task d-flex align-items-center"><i
                     class="fa fa-plus-circle fa-2x pr-2 task-icon"></i>Создать новую заметку</a>
         </div>
         <transition name="fade">
-            <div v-if="create" class=" justify-content-center align-items-center text-center w-100 create">
+            <div v-if="open" class=" justify-content-center align-items-center text-center w-100 create">
                 <div class="col-12 col-md-4 mt-4 mb-4 mx-auto text-center input-group" id="name">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">Заголовок</span>
+                        <span class="input-group-text">Заголовок</span>
                     </div>
                     <input type="text"
                            class="form-control"></div>
                 <div v-for="(item,index) in list" :id="index"
                      class="col-12 col-md-6 m-3 text-center input-group mx-auto">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">-</span>
+                        <span class="input-group-text">-</span>
                     </div>
-                    <input type="text" class="form-control  mr-2 task-item" >
+                    <input type="text" class="form-control  mr-2 task-item">
                     <i class="fa fa-minus-circle fa-2x task-icon" :id="index" @click="deleteItem"></i>
                 </div>
                 <div class="col-12 col-md-6 text-center mx-auto  mb-3">
@@ -41,11 +41,10 @@
 
     export default {
         name: "ToolbarComponent",
-        props: [ 'creat' ],
         data() {
             return {
-                create: false,
-                list: [ 0 ]
+                list: [ 0 ],
+                open: false,
             }
         },
         methods: {
@@ -91,7 +90,17 @@
                 this.$store.dispatch( 'setNewTask', objTask );
 
                 this.tasksList = !this.tasksList
+            },
+            openNav() {
+                this.$store.dispatch( 'setCreate',!this.open);
+                this.open = this.$store.getters.getCreateTask;
             }
+        },
+        mounted() {
+            this.$root.$on('closeT', (e) => {
+                this.$store.dispatch( 'setCreate',e);
+                this.open = this.$store.getters.getCreateTask;
+            })
         }
     }
 </script>

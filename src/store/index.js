@@ -9,7 +9,8 @@ export default new Vuex.Store( {
         task: '',
         delId: '',
         modalState: '',
-        taskState: []
+        taskState: [],
+        createTask: false
     },
     mutations: {
         setTasks: ( state, payload ) => {
@@ -46,6 +47,9 @@ export default new Vuex.Store( {
         },
         setTaskState: (state,payload) => {
             state.taskState.push(payload);
+        },
+        setCreateTask: (state, payload) => {
+            state.createTask = payload;
         }
     },
     actions: {
@@ -73,6 +77,9 @@ export default new Vuex.Store( {
         pushTaskState: async (state,payload) => {
             await state.commit( 'setTaskState', payload );
         },
+        setCreate: async (state,payload) => {
+            await state.commit('setCreateTask', payload);
+        }
     },
     modules: {},
     getters: {
@@ -90,6 +97,9 @@ export default new Vuex.Store( {
         },
         getTaskState: state => {
             return state.taskState;
+        },
+        getCreateTask: state => {
+            return state.createTask;
         }
     }
 } )

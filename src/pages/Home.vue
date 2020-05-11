@@ -1,7 +1,7 @@
 <template>
     <div>
-        <toolbar-component></toolbar-component>
-        <div class="row mt-4 d-flex justify-content-between mx-0" >
+        <toolbar-component ></toolbar-component>
+        <div class="row mt-4 d-flex justify-content-between mx-0"  @click="closeToolbar">
 
             <card-component
                     v-for="(item,index) in tasks"
@@ -21,7 +21,6 @@
     import CardComponent from "../components/CardComponent";
     import ModalContent from "../components/ModalComponent";
     import ToolbarComponent from "../components/ToolbarComponent";
-
     export default {
         name: "Home",
         components: {
@@ -44,6 +43,9 @@
                 this.del = true;
                 this.$store.dispatch( 'delId', Number(e.target.id) );
             },
+            closeToolbar(){
+                this.$root.$emit('closeT', false)
+            }
         }
     }
 </script>

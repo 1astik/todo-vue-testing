@@ -47,7 +47,8 @@
             },
             goHome(){
                 this.closeModal();
-                this.$router.push( { path: '/todo-testing' });
+                this.$router.push( { path: '/todo-testing' }); //path for github.io
+                // this.$router.push( { path: '/' });
             }
         },
         beforeMount() {
